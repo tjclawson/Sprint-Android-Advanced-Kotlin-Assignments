@@ -11,7 +11,7 @@ Assignment
 Build an app which has a root view that shows 2 buttons. Each button navigates to a separate View.
 
 ## Requirements
-This app will consist of a Root Controller and 2 sub controllers
+This app will consist of a Root Controller and 2 Sub controllers
 
 ## Outline
 1. Create a project with Conductor
