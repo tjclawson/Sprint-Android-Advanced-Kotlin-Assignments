@@ -38,6 +38,7 @@ dependencies {
     implementation 'com.bluelinelabs:conductor-archlifecycle:3.0.0-rc1'
 
     implementation "androidx.lifecycle:lifecycle-livedata-core:2.1.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

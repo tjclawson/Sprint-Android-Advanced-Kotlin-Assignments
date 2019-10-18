@@ -8,6 +8,7 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.example.conductorassignment.controller.MainController
+import com.example.conductorassignment.controller.MyViewModel
 
 class MainActivity : AppCompatActivity() {
 

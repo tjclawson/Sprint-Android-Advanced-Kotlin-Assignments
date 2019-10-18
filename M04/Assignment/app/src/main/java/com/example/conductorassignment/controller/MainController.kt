@@ -1,9 +1,11 @@
 package com.example.conductorassignment.controller
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -16,15 +18,16 @@ import com.example.conductorassignment.R
 class MainController : Controller(), NumberController.NumberContainer, TextController.TextContainer {
 
     var receivedData: Int? = null
-    var recievedText: String? = null
+    var receivedText: String? = null
+
 
     override fun getData(data: Int) {
         receivedData = data
-        recievedText = null
+        receivedText = null
     }
 
     override fun getText(text: String) {
-        recievedText = text
+        receivedText = text
         receivedData = null
     }
 
@@ -40,13 +43,27 @@ class MainController : Controller(), NumberController.NumberContainer, TextContr
         val buttonText = view?.findViewById<Button>(R.id.button_launch_text_controller)
         val buttonNumber = view?.findViewById<Button>(R.id.button_launch_number_controller)
         val textView = view?.findViewById<TextView>(R.id.text_view_main_controller)
-        textView?.text = receivedData?.toString() ?: recievedText
-        textView?.text = recievedText?.toString() ?: receivedData.toString()
+        val etText = view?.findViewById<EditText>(R.id.et_main_controller)
+        val buttonSave = view?.findViewById<Button>(R.id.button_save_main)
 
+
+        if (receivedData != null || receivedText != null) {
+            textView?.text = receivedData?.toString() ?: receivedText
+            textView?.text = receivedText?.toString() ?: receivedData.toString()
+        }
+
+        val bundle = Bundle()
 
 
         buttonText?.setOnClickListener {
-            router.pushController(RouterTransaction.with(TextController(this))
+
+            val text = etText?.text.toString()
+
+            if (!text.isNullOrBlank()) {
+                bundle.putString("KEY", text)
+            }
+
+            router.pushController(RouterTransaction.with(TextController(this, bundle))
                 .pushChangeHandler(HorizontalChangeHandler())
                 .popChangeHandler(HorizontalChangeHandler()))
         }
